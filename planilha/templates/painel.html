@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Painel - SystemBreak{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/logo-f.png' %}">
+    
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+</head>
+<body>
+    <!-- <a href="{% url 'attArquivo' %}"><button backhground-color="green">Atualizar Dados</button></a> -->
+    <header class="menu">
+        <nav class="navigation">
+            <a href="" class="logo-nome"><img style="width: 30px;" src="{% static 'img/logo-b.png' %}" alt="">  SystemBreak</a>
+            <ul class="menu-ul">
+                <li class="menu-ul-li"><a href="">Painel</a></li>
+                <li class="menu-ul-li"><a href="">Informações</a></li>
+                <!-- <li class="menu-ul-li"></li>
+                <li class="menu-ul-li"></li> -->
+            </ul>
+        </nav>
+        
+    </header>
+
+    <main style="margin-left: 40px;">
+        <div class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Tesouro IPCA+ 2045</h2>
+                    <a href="{% url 'attArquivo' %}" class="btn">Atualizar</a>
+                </div>
+                <h5 class="text-h5">Linhas: {{qnt_linhas}}</h5>
+
+                <div class="items-controller">
+                    <h5>Mostrar</h5>
+                    <select name="" id="itemperpage">
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="08" selected>08</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                    <h5 style="width: 100%;">Por Página</h5>
+                </div>
+                <h6 style="margin-top: 20px;">Dados retirados de: <a href="https://www.tesourotransparente.gov.br/ckan/dataset/taxas-dos-titulos-ofertados-pelo-tesouro-direto/resource/796d2059-14e9-44e3-80c9-2d9e30b405c1?_gl=1*1yaakk9*_ga*MTYyMTE1MjM0MS4xNjk1NzUxODYw*_ga_95FH8RQ7M0*MTY5NjE5OTE1NS41LjEuMTY5NjE5OTE4Ni4yOS4wLjA">https://www.tesourotransparente.gov.br/ckan/dataset/taxas-dos-titulos-ofertados-pelo-tesouro-direto/</a></h6>
+                <div class="bottom-field">
+                    <ul class="pagination">
+                      <li class="prev"><a href="#" id="prev">&#139;</a></li>
+                      <!-- <li class="list"><a href="">01</a></li>
+                      <li class="list"><a href="">02</a></li>
+                      <li class="list"><a href="">03</a></li> -->
+                        <!-- page number here -->
+                      <li class="next"><a href="#" id="next">&#155;</a></li>
+                    </ul>
+                </div>
+                <table id="table" class="recent">
+                    <thead>
+                        <tr>
+                            <th>Tipo Titulo</th>
+                            <th>Data Vencimento</th>
+                            <th>Data Base</th>
+                            <th>Taxa Compra Manha</th>
+                            <th>Taxa Venda Manha</th>
+                            <th>PU Compra Manha</th>
+                            <th>PU Venda Manha</th>
+                            <th>PU Base Manha</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody>
+                        {% if d %}
+                        {% for i in d %}
+                        <tr>
+                            <!-- <td><input type="checkbox"></td> -->
+                            <td>{{i.Tipo_Titulo}}</td>
+                            <td>{{i.Data_Vencimento}}</td>
+                            <td>{{i.Data_Base}}</td>
+                            <td>{{i.Taxa_Compra_Manha}}</td>
+                            <td>{{i.Taxa_Venda_Manha}}</td>
+                            <td>{{i.PU_Compra_Manha}}</td>
+                            <td>{{i.PU_Venda_Manha}}</td>
+                            <td>{{i.PU_Base_Manha}}</td>
+                            <!-- <td><i class="fa fa-edit"></i> | <i class="fa fa-trash"></i></td> -->
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="recentOrders-2">
+                <div class="cardHeader-2">
+                    <h2>Quartis</h2>
+                    <!-- <a href="" class="btn">Ver todos</a> -->
+                </div>
+        
+                <table class="fornecedores">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Inicio</th>
+                            <th>Final</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody>
+                        <tr>
+                            <td>Q1</td>
+                            <td>{{q1i}}</td>
+                            <td>{{q1f}}</td>
+                            <td>{{q1b}}</td>
+                        </tr>
+                        <tr>
+                            <td>Q2</td>
+                            <td>{{q2i}}</td>
+                            <td>{{q2f}}</td>
+                            <td>{{q2b}}</td>
+                        </tr>
+                        <tr>
+                            <td>Q3</td>
+                            <td>{{q3i}}</td>
+                            <td>{{q3f}}</td>
+                            <td>{{q3b}}</td>
+                        </tr>
+                        <tr>
+                            <td>Q4</td>
+                            <td>{{q4i}}</td>
+                            <td>{{q4f}}</td>
+                            <td>{{q4b}}</td>
+                        </tr>
+                        <!-- <tr>
+                            <td>Máximo</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <div class="cardHeader-2">
+                    <h2>Dados</h2>
+                    <!-- <a href="" class="btn">Ver todos</a> -->
+                </div>
+        
+                <table class="fornecedores">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Média Simples</th>
+                            <th>Desvio Padrão</th>
+                            <th>Inversa da Normal</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody>
+                        <tr>
+                            <td>Taxa Compra Manha</td>
+                            <td>{{media_taxa}}</td>
+                            <td>{{desvio_taxa}}</td>
+                            <td>{{inv_taxa}}</td>
+                        </tr>
+                        <tr>
+                            <td>PU Compra Manha</td>
+                            <td>{{media_pu}}</td>
+                            <td>{{desvio_pu}}</td>
+                            <td>{{inv_pu}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="container-movel">
+                    <h2>Média Móvel</h2>
+                    <form action="{% url 'grafico' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="input-field" id="input-field">
+                            <h5>Intervalo de dias: </h5>
+                            <input type="number" min = "0" step="0" name="intervalo_movel"  id="media_movel" placeholder="0">
+                            <div class="underline"></div>
+                        </div>
+                        <br>
+                        <div class="input-field" id="input-field">
+                            <h5>Quantidade: </h5>
+                            <input type="number" step="0" min = "0" name="qnt_movel"  id="media_movel" placeholder="0">
+                            <div class="underline"></div>
+                        </div>
+
+                        <!-- <br> -->
+
+                        <h5 style="color: white; margin-bottom: 20px; margin-top: 20px;" class="text-h5">OBS: Apenas valores inteiros</h5>
+                        
+
+                        <input class="btn-submit" type="submit" value="Continue">
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        <h2 style="width: 100%; align-items: center;text-align: center; margin-top: 40px; color: var(--blue-m);">Gráficos Móvel</h2>
+        <div style="display: flex; justify-content: space-between;" class="graficos">
+            <div style="align-items: center; text-align: center; width: 50%;" class="gr">
+                <img style="width: 100%;" src="{% static 'img/imagem.png' %}" alt="">
+                {{grafi}}
+            </div>
+            <div style="align-items: center; text-align: center; width: 50%;" class="tabela-m">
+                <img style="width: 100%;" src="{% static 'img/imagem2.png' %}" alt="">
+            </div>
+        </div>
+    </main>
+
+    <footer class="fim">
+        <div class="direitos">
+            © 2023 SystemBreak. Todos os direitos reservados.
+            <br>
+            Contato: (21) 96741-2706
+            <br>
+            <br>
+            <img style="width: 40px; " src="{% static 'img/logo-b.png' %}" alt="">
+        </div>
+    </footer>
+
+    <script src="{% static 'js/painel.js' %}"></script>
+</body>
+</html>
