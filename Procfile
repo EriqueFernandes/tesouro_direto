@@ -1,1 +1,1 @@
-web: gunicorn mysite.wsgi:django-polls --log-file-
+web: python manage.py migrate && gunicorn ipca.wsgi
