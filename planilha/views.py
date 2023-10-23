@@ -113,10 +113,10 @@ def grafico_movel(request):
     if request.method == 'POST':
         # matplotlib.use('Agg')
         plt.close('all')
-        if os.path.isfile(envio+"/templates/static/img/imagem.png") == True:
-            os.remove(envio+"/templates/static/img/imagem.png")
-        if os.path.isfile(envio+"/templates/static/img/imagem2.png") == True:
-            os.remove(envio+"/templates/static/img/imagem2.png")
+        # if os.path.isfile(envio+"/templates/static/img/imagem.png") == True:
+        #     os.remove(envio+"/templates/static/img/imagem.png")
+        # if os.path.isfile(envio+"/templates/static/img/imagem2.png") == True:
+        #     os.remove(envio+"/templates/static/img/imagem2.png")
         plt.close('all')
         valor_tempo = int(request.POST.get('intervalo_movel'))
         valor_qnt = int(request.POST.get('qnt_movel'))
