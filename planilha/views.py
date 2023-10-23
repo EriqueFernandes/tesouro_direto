@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import tornado
 import tkinter
+import requests
 # import threading
 
 # Create your views here.
@@ -24,16 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 envio = str(BASE_DIR)
 if os.path.isfile(envio+"/PrecoTaxaTesouroDireto.csv") == False:
     wget.download('https://www.tesourotransparente.gov.br/ckan/dataset/df56aa42-484a-4a59-8184-7676580c81e3/resource/796d2059-14e9-44e3-80c9-2d9e30b405c1/download/PrecoTaxaTesouroDireto.csv')
-    lista_arquivos = os.listdir(caminho)
-    
-    for arquivo in lista_arquivos:
-        if arquivo == "PrecoTaxaTesouroDireto.csv":
-            os.rename(caminho+arquivo, envio+"/"+arquivo)
+#     lista_arquivos = os.listdir(caminho)
+# requests.get('https://www.tesourotransparente.gov.br/ckan/dataset/df56aa42-484a-4a59-8184-7676580c81e3/resource/796d2059-14e9-44e3-80c9-2d9e30b405c1/download/PrecoTaxaTesouroDireto.csv')
+#     for arquivo in lista_arquivos:
+#         if arquivo == "PrecoTaxaTesouroDireto.csv":
+#             os.rename(caminho+arquivo, envio+"/"+arquivo)
 
 def attArquivo(request):
-    caminho = "C:/Users/eriqu/Downloads/"
-    if os.path.isfile(caminho+"PrecoTaxaTesouroDireto.csv") == True:
-        os.remove(caminho+"PrecoTaxaTesouroDireto.csv")
+    # caminho = "C:/Users/eriqu/Downloads/"
+    # if os.path.isfile(caminho+"PrecoTaxaTesouroDireto.csv") == True:
+    #     os.remove(caminho+"PrecoTaxaTesouroDireto.csv")
 
     if os.path.isfile(envio+"/PrecoTaxaTesouroDireto.csv") == True:
         os.remove(envio+"/PrecoTaxaTesouroDireto.csv")
@@ -44,11 +45,12 @@ def attArquivo(request):
     # sleep(5)
     # navegador.quit()
     wget.download('https://www.tesourotransparente.gov.br/ckan/dataset/df56aa42-484a-4a59-8184-7676580c81e3/resource/796d2059-14e9-44e3-80c9-2d9e30b405c1/download/PrecoTaxaTesouroDireto.csv')
-    lista_arquivos = os.listdir(caminho)
     
-    for arquivo in lista_arquivos:
-        if arquivo == "PrecoTaxaTesouroDireto.csv":
-            os.rename(caminho+arquivo, envio+"/"+arquivo)
+    # lista_arquivos = os.listdir(caminho)
+    
+    # for arquivo in lista_arquivos:
+    #     if arquivo == "PrecoTaxaTesouroDireto.csv":
+    #         os.rename(caminho+arquivo, envio+"/"+arquivo)
     
     return redirect('painel')
 
